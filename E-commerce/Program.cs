@@ -1,11 +1,14 @@
 using System.Text;
 using E_commerce.Dbcontext;
 using E_commerce.Mapper;
-using ECommerceAPI.Services;
+using E_commerce.Service;
+
+//using E_commerce.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+
 
 namespace E_commerce
 {
@@ -24,7 +27,9 @@ namespace E_commerce
             builder.Services.AddSwaggerGen();
             builder.Services.AddAutoMapper(typeof(UserMapper));
             builder.Services.AddScoped<IUserService,Userservice>();
-
+            builder.Services.AddScoped<ICategoryService, CategoryService>();
+            builder.Services.AddScoped<IProductService, ProductService>();
+            builder.Services.AddScoped<ICloudinaryservice,Cloudinaryservice>();
 
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>

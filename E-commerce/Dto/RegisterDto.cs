@@ -17,6 +17,6 @@ namespace E_commerce.Dto
         public string? Password { get; set; }
         [Required]
         [Compare("Password", ErrorMessage = "password and confirmation password do not match.")]
-        public string? ConformPassword { get; set; }
+        public string? ConfirmPassword { get; set; }
     }
 }
