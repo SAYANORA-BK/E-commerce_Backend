@@ -11,10 +11,16 @@ namespace E_commerce.Dbcontext
         public DbSet<User> users{ get; set; }
         public DbSet<Product> Product { get; set; }
        public DbSet<Category> Category { get; set; }
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<CartItems> CartItems { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>()
                 .HasKey(x => x.Id);
+
+            modelBuilder.Entity<Product>()
+                .Property(pr => pr.Price).
+                HasPrecision(18, 2);
         }
     }
 }

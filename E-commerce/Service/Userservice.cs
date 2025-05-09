@@ -46,19 +46,19 @@ namespace E_commerce.Service
             {
               
 
-                var usr = await _context.users.FirstOrDefaultAsync(u => u.Email == userdto.Email);
-                if (usr == null)
+                var userr = await _context.users.FirstOrDefaultAsync(u => u.Email == userdto.Email);
+                if (userr == null)
                 {
                    
-                    return new ResultDto { Error = "Not Found" };
+                    return new ResultDto { Error = "User not Found" };
                 }
-                if (usr.IsBlocked == true)
+                if (userr.IsBlocked == true)
                 {
                
                     return new ResultDto { Error = "user is blocked" };
                 }
 
-                var pass = ValidatePassword(userdto.Password, usr.Password);
+                var pass = ValidatePassword(userdto.Password, userr.Password);
 
                 if (!pass)
                 {
@@ -66,14 +66,14 @@ namespace E_commerce.Service
                 }
 
                
-                var token = GenerateToken(usr);
+                var token = GenerateToken(userr);
                 return new ResultDto
                 {
                     Token = token,
-                    Role = usr.Role,
-                    Email = usr.Email,
-                    Id = usr.Id,
-                    Name = usr.FirstName
+                    Role = userr.Role,
+                    Email = userr.Email,
+                    Id = userr.Id,
+                    Name = userr.FirstName
 
                 };
             }

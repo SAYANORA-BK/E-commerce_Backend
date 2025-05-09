@@ -12,5 +12,7 @@ namespace E_commerce.Models
         public string Password { get; set; }
         public string Role {  get; set; }="user";
         public bool IsBlocked { get; set; }=false ;
+        public Cart Cart {  get; set; }   
 }
+
 }

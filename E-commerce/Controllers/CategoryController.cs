@@ -35,7 +35,7 @@ namespace E_commerce.Controllers
         }
 
         [HttpGet]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> GetCategory()
         {
             try
@@ -49,7 +49,7 @@ namespace E_commerce.Controllers
             }
         }
         [HttpDelete("{id}")]
-        
+        [Authorize]
         public async Task<IActionResult> DeleteCategory(int id)
         {
             try

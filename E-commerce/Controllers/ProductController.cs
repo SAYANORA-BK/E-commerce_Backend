@@ -16,36 +16,36 @@ namespace E_commerce.Controllers
             _services = services;
         }
         [HttpGet]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> GetProduct()
         {
             var products = await _services.GetAllProducts();
             return Ok(products);
         }
         [HttpGet("byId/{id}")]
-        //[Authorize]
+       [Authorize]
         public async Task<IActionResult> GetProductById(int id)
         {
             var products = await _services.GetProductsById(id);
             if (products == null)
             {
-                return NotFound("There is no product exist in this id");
+                return NotFound("No product in this id");
             }
             return Ok(products);
         }
         [HttpGet("byCategory/{CategoryName}")]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> GetProductBYCategory(string CategoryName)
         {
             var products = await _services.GetProductsByCategory(CategoryName);
             if (products == null || !products.Any())
             {
-                return NotFound("No products found in this category.");
+                return NotFound("No products  in this category.");
             }
             return Ok(products);
         }
-        [HttpPost("Admin")]
-        //[Authorize(Roles = "Admin")]
+        [HttpPost]
+        [Authorize]
         public async Task<IActionResult> addProduct([FromForm] AddProductDto addproduct, IFormFile image)
         {
             if (addproduct == null)
@@ -55,23 +55,23 @@ namespace E_commerce.Controllers
             bool product = await _services.AddProduct(addproduct, image);
             if (product)
             {
-                return Ok("Product added successfully");
+                return Ok(" Added successfully");
             }
             return BadRequest();
         }
         [HttpDelete("{id}/admin")]
-        //[Authorize(Roles = "Admin")]
+        [Authorize]
         public async Task<IActionResult> DeleteProduct(int id)
         {
             bool isdelete = await _services.DeleteProduct(id);
             if (isdelete)
             {
-                return Ok("deleted successfully");
+                return Ok("Deleted successfully");
             }
-            return NotFound("there is no product in this given id");
+            return NotFound(" no product in this given id");
         }
         [HttpPut("Edit/{id}/admin")]
-        //[Authorize(Roles = "Admin")]
+        [Authorize]
         public async Task<IActionResult> EditProduct(int id, [FromForm] AddProductDto addproduct, IFormFile image)
         {
             if (addProduct == null)
@@ -83,10 +83,10 @@ namespace E_commerce.Controllers
             {
                 return BadRequest();
             }
-            return Ok("Product Updated successfully ");
+            return Ok(" Updated successfully ");
         }
         [HttpGet("{search}")]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> SearchProduct(string search)
         {
             try
