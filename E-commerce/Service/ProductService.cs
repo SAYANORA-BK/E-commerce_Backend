@@ -30,7 +30,8 @@ namespace E_commerce.Service
                         Description = x.Description,
                         Price = x.Price,
                         stock = x.stock,
-                        Image = x.Image
+                        Image = x.Image,
+                        Category=x.category.Name
                     }).ToList();
                     return productall;
                 }
@@ -45,7 +46,7 @@ namespace E_commerce.Service
         {
             try
             {
-                var products = await _Context.Product.FirstOrDefaultAsync(x => x.ProductId == id);
+                var products = await _Context.Product.Include(x=>x.category).FirstOrDefaultAsync(x => x.ProductId == id);
                 if (products == null)
                 {
                     return null;
@@ -56,7 +57,8 @@ namespace E_commerce.Service
                     Description = products.Description,
                     Price = products.Price,
                     stock = products.stock,
-                    Image = products.Image
+                    Image = products.Image,
+                    Category=products.category.Name
                 };
 
             }
@@ -75,7 +77,8 @@ namespace E_commerce.Service
                     Description = x.Description,
                     Price = x.Price,
                     stock = x.stock,
-                    Image = x.Image
+                    Image = x.Image,
+                    Category=categoryname
 
                 }).ToListAsync();
             if (!products.Any())

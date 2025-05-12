@@ -35,7 +35,7 @@ namespace E_commerce.Controllers
         }
         [HttpGet("byCategory/{CategoryName}")]
         [Authorize]
-        public async Task<IActionResult> GetProductBYCategory(string CategoryName)
+        public async Task<IActionResult> GetProductByCategory(string CategoryName)
         {
             var products = await _services.GetProductsByCategory(CategoryName);
             if (products == null || !products.Any())
@@ -50,7 +50,7 @@ namespace E_commerce.Controllers
         {
             if (addproduct == null)
             {
-                return NotFound("There product is empty");
+                return NotFound("The product is empty");
             }
             bool product = await _services.AddProduct(addproduct, image);
             if (product)

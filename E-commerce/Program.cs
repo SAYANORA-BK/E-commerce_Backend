@@ -1,9 +1,8 @@
 using System.Text;
 using E_commerce.Dbcontext;
 using E_commerce.Mapper;
+using E_commerce.Middleware;
 using E_commerce.Service;
-
-//using E_commerce.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -91,7 +90,7 @@ namespace E_commerce
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
+            app.UseMiddleware<UserIdMiddleware>();
 
             app.MapControllers();
 
