@@ -57,6 +57,7 @@ namespace E_commerce.Service
                 if (check != null)
                 {
                     check.Quantity++;
+                    return new ApiResponse<CartItems>(200, "Quantity increased");
                 }
                 else
                 {
@@ -139,7 +140,7 @@ namespace E_commerce.Service
             }
         }
 
-        public async Task<bool> Updatequantity(int userid, int productid)
+        public async Task<bool>DecrementQuantity(int userid, int productid)
         {
             try
             {
@@ -177,5 +178,38 @@ namespace E_commerce.Service
                 throw new Exception(ex.Message);
             }
         }
+
+
+        public async Task<bool> IncrementQuantity(int userid, int productid)
+        {
+            try
+            {
+                var user = await _context.users
+                    .Include(c => c.Cart)
+                    .ThenInclude(ci => ci.cartitems)
+                    .FirstOrDefaultAsync(u => u.Id == userid);
+
+                if (user == null)
+                {
+                    throw new Exception("User not found");
+                }
+
+                var item = user.Cart?.cartitems?.FirstOrDefault(p => p.ProductId == productid);
+                if (item == null)
+                {
+                    return false;
+                }
+
+                item.Quantity++; 
+
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception)
+            {
+                throw; 
+            }
+        }
+
     }
 }

@@ -72,19 +72,39 @@ namespace E_commerce.Controllers
                 return StatusCode(500, new ApiResponse<string>(500, "Internal server error", null, ex.Message));
             }
         }
-        [HttpPut("UpdateQuantity/{prductid}")]
+        [HttpPut("DecrementQuantity/{prductid}")]
         [Authorize]
-        public async Task<IActionResult> UpdateQuantity(int prductid)
+        public async Task<IActionResult> DecrementQuantity(int prductid)
         {
             try
             {
                 int userid = Convert.ToInt32(HttpContext.Items["UserId"]);
-                bool items = await _service.Updatequantity(userid, prductid);
+                bool items = await _service.DecrementQuantity(userid, prductid);
                 if (items == false)
                 {
                     return BadRequest(new ApiResponse<string>(400, "Item not found in the cart", null, "Item not found in the cart"));
                 }
-                return Ok(new ApiResponse<string>(200, "Quantity Updated"));
+                return Ok(new ApiResponse<string>(200, "Quantity Decreased"));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpPut("IncrementQuantity/{prductid}")]
+        [Authorize]
+        public async Task<IActionResult> IncrementQuantity(int prductid)
+        {
+            try
+            {
+                int userid = Convert.ToInt32(HttpContext.Items["UserId"]);
+                bool items = await _service.IncrementQuantity(userid, prductid);
+                if (items == false)
+                {
+                    return BadRequest(new ApiResponse<string>(400, "Item not found in the cart", null, "Item not found in the cart"));
+                }
+                return Ok(new ApiResponse<string>(200, "Quantity Increased"));
             }
             catch (Exception ex)
             {

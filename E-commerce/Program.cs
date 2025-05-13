@@ -30,6 +30,11 @@ namespace E_commerce
             builder.Services.AddScoped<IProductService, ProductService>();
             builder.Services.AddScoped<ICloudinaryservice,Cloudinaryservice>();
             builder.Services.AddScoped<ICartService, CartService>();
+            builder.Services.AddScoped<IWishListService, WishListService>();
+            builder.Services.AddScoped<IOrderService,OrderService>();
+            builder.Services.AddScoped<IAddressService, AddressService>();
+           
+            
 
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>

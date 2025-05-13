@@ -12,7 +12,12 @@ namespace E_commerce.Models
         public string Password { get; set; }
         public string Role {  get; set; }="user";
         public bool IsBlocked { get; set; }=false ;
-        public Cart Cart {  get; set; }   
-}
+        public virtual Cart? Cart { get; set; }
+        public virtual List<WishList>? WishList { get; set; }
+        public virtual List<Order>? Orders { get; set; }
+        public ICollection<Address>? Addresses { get; set; }
+
+
+    }
 
 }

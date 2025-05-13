@@ -8,7 +8,8 @@ namespace E_commerce.Service
         Task<ApiResponse<CartItems>> AddToCart(int productId, int userid);
         Task<List<CartViewDto>> GetCart(int userid);
         Task<bool> RemoveFromCart(int userId, int productId);
-        Task<bool> Updatequantity(int userid, int productid);
+        Task<bool> DecrementQuantity(int userid, int productid);
+        Task<bool> IncrementQuantity(int userid, int productid);
 
 
     }

@@ -5,7 +5,7 @@
 namespace E_commerce.Migrations
 {
     /// <inheritdoc />
-    public partial class UserMigration1 : Migration
+    public partial class AddrsMigration12 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

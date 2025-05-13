@@ -12,6 +12,10 @@ namespace E_commerce.Mapper
             CreateMap<User, LoginDto>().ReverseMap();
             CreateMap<Category, CategoryViewDto>().ReverseMap();
             CreateMap<AddProductDto, Product>().ReverseMap();
+            CreateMap<WishList, WishListDto>().ReverseMap();
+            CreateMap<Order, OrderViewDto>().ReverseMap();
+           
+
         }
     }
 }
