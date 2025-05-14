@@ -18,6 +18,7 @@ namespace E_commerce.Dbcontext
         public DbSet<Order> Orders { get; set; }
         public DbSet<OderItems> OrderItems { get; set; }
         public DbSet<Address> Addresses { get; set; }
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -36,6 +37,11 @@ namespace E_commerce.Dbcontext
             modelBuilder.Entity<Order>()
                 .Property(o => o.TotalAmount)
                 .HasPrecision(18, 2);
+            modelBuilder.Entity<Order>()
+                .HasOne(x => x.User)
+                .WithMany(x => x.Orders)
+                .HasForeignKey(x => x.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

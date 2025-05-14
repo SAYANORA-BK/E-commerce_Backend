@@ -17,7 +17,7 @@ namespace E_commerce.Controllers
             _service = service;
         }
         [HttpPost("AddToCart")]
-        [Authorize]
+        [Authorize(Roles = "user")]
         public async Task<IActionResult> AddtoCart(int productid)
         {
             if (HttpContext.Items["UserId"] is not int userid)
@@ -53,7 +53,7 @@ namespace E_commerce.Controllers
             return Ok(new ApiResponse<IEnumerable<CartViewDto>>(200, "Cart successfully fetched", cartitems));
         }
         [HttpDelete("Delete/{productId}")]
-        [Authorize]
+        [Authorize(Roles = "user")]
         public async Task<IActionResult> RemoveCart(int productId)
         {
             try
@@ -73,7 +73,7 @@ namespace E_commerce.Controllers
             }
         }
         [HttpPut("DecrementQuantity/{prductid}")]
-        [Authorize]
+        [Authorize(Roles = "user")]
         public async Task<IActionResult> DecrementQuantity(int prductid)
         {
             try
@@ -93,7 +93,7 @@ namespace E_commerce.Controllers
         }
 
         [HttpPut("IncrementQuantity/{prductid}")]
-        [Authorize]
+        [Authorize(Roles = "user")]
         public async Task<IActionResult> IncrementQuantity(int prductid)
         {
             try

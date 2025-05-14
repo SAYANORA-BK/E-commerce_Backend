@@ -177,6 +177,7 @@ namespace E_commerce.Service
                 Title = s.Title,
                 Description = s.Description,
                 Price = s.Price,
+                stock=s.stock,
                 Image = s.Image,
             }).ToList();
         }

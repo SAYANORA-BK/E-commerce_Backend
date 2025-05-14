@@ -16,7 +16,7 @@ namespace E_commerce.Controllers
             _services = services;
         }
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles ="user")]
         public async Task<IActionResult> CreateAddress([FromForm] CreateAddressDto address)
         {
             var userId = Convert.ToInt32(HttpContext.Items["UserId"]);
@@ -31,7 +31,7 @@ namespace E_commerce.Controllers
 
         }
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "user")]
         public async Task<IActionResult> ShowAddresses()
         {
             var userId = Convert.ToInt32(HttpContext.Items["UserId"]);
@@ -39,7 +39,7 @@ namespace E_commerce.Controllers
             return Ok(addresses);
         }
         [HttpDelete("{Addressid}")]
-        [Authorize]
+        [Authorize(Roles = "user")]
         public async Task<IActionResult> DeleteAddress(int Addressid)
         {
             var userId = Convert.ToInt32(HttpContext.Items["UserId"]);

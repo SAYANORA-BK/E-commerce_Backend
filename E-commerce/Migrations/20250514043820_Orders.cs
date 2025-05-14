@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace E_commerce.Migrations
 {
     /// <inheritdoc />
-    public partial class AddrsMigration222 : Migration
+    public partial class Orders : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -146,7 +146,7 @@ namespace E_commerce.Migrations
                     UserId = table.Column<int>(type: "int", nullable: false),
                     OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     AddressId = table.Column<int>(type: "int", nullable: false),
-                    TotalAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    TotalAmount = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
                     TransactionId = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
@@ -164,7 +164,7 @@ namespace E_commerce.Migrations
                         column: x => x.UserId,
                         principalTable: "users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -202,7 +202,7 @@ namespace E_commerce.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     OrderId = table.Column<int>(type: "int", nullable: false),
                     productId = table.Column<int>(type: "int", nullable: false),
-                    TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    TotalPrice = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: true),
                     Quantity = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

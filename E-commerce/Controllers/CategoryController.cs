@@ -16,6 +16,7 @@ namespace E_commerce.Controllers
             _services = services;
         }
         [HttpPost]
+        [Authorize(Roles ="Admin")]
         public async Task<IActionResult> AddCategory(CategoryViewDto categoryViewDto)
         {
             try
@@ -49,7 +50,7 @@ namespace E_commerce.Controllers
             }
         }
         [HttpDelete("{id}")]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
             try

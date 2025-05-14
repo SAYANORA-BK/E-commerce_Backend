@@ -33,8 +33,17 @@ namespace E_commerce
             builder.Services.AddScoped<IWishListService, WishListService>();
             builder.Services.AddScoped<IOrderService,OrderService>();
             builder.Services.AddScoped<IAddressService, AddressService>();
-           
-            
+            builder.Services.AddScoped<IAdminUserViewService, AdminUserViewService>();
+
+
+            builder.Services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Admin", policy =>
+                    policy.RequireRole("Admin")); // or other requirements
+            });
+
+
+
 
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>

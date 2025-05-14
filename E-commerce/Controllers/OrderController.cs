@@ -17,7 +17,7 @@ namespace E_commerce.Controllers
             _service = service;
         }
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "user")]
         public async Task<IActionResult> OrderItem(CreateOrderDto CreateOrder)
         {
             try
@@ -50,7 +50,7 @@ namespace E_commerce.Controllers
             }
         }
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "user")]
         public async Task<IActionResult> GetOrders()
         {
             try

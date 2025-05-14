@@ -45,7 +45,7 @@ namespace E_commerce.Controllers
             return Ok(products);
         }
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles ="Admin")]
         public async Task<IActionResult> addProduct([FromForm] AddProductDto addproduct, IFormFile image)
         {
             if (addproduct == null)
@@ -60,7 +60,7 @@ namespace E_commerce.Controllers
             return BadRequest();
         }
         [HttpDelete("{id}/admin")]
-        [Authorize]
+        [Authorize(Roles ="Admin")]
         public async Task<IActionResult> DeleteProduct(int id)
         {
             bool isdelete = await _services.DeleteProduct(id);
@@ -71,7 +71,7 @@ namespace E_commerce.Controllers
             return NotFound(" no product in this given id");
         }
         [HttpPut("Edit/{id}/admin")]
-        [Authorize]
+        [Authorize(Roles ="Admin")]
         public async Task<IActionResult> EditProduct(int id, [FromForm] AddProductDto addproduct, IFormFile image)
         {
             if (addProduct == null)

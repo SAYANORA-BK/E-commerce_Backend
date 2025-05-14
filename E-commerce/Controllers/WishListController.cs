@@ -17,7 +17,7 @@ namespace E_commerce.Controllers
             _service = service;
         }
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "user")]
         public async Task<IActionResult> AddtoWishlist(int productid)
         {
             int userId = Convert.ToInt32(HttpContext.Items["UserId"]);
@@ -37,7 +37,7 @@ namespace E_commerce.Controllers
 
 
         [HttpGet]
-        [Authorize]
+        [Authorize (Roles ="user")]
         public async Task<IActionResult> GetWhishLists()
         {
             try
@@ -54,7 +54,7 @@ namespace E_commerce.Controllers
             }
         }
         [HttpDelete]
-        [Authorize]
+        [Authorize(Roles ="user")]
         public async Task<IActionResult> RemovefromWishlist(int productid)
         {
             int userId = Convert.ToInt32(HttpContext.Items["UserId"]);

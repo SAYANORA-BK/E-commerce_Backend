@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace E_commerce.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250513120920_AddrsMigration222")]
-    partial class AddrsMigration222
+    [Migration("20250514043820_Orders")]
+    partial class Orders
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -153,6 +153,7 @@ namespace E_commerce.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal?>("TotalPrice")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("productId")
@@ -186,6 +187,7 @@ namespace E_commerce.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("TotalAmount")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("TransactionId")
@@ -371,7 +373,7 @@ namespace E_commerce.Migrations
                     b.HasOne("E_commerce.Models.User", "User")
                         .WithMany("Orders")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("User");

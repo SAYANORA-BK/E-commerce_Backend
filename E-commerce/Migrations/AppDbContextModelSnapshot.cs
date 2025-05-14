@@ -70,7 +70,7 @@ namespace E_commerce.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Addresses");
+                    b.ToTable("Addresses", (string)null);
                 });
 
             modelBuilder.Entity("E_commerce.Models.Cart", b =>
@@ -89,7 +89,7 @@ namespace E_commerce.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Carts");
+                    b.ToTable("Carts", (string)null);
                 });
 
             modelBuilder.Entity("E_commerce.Models.CartItems", b =>
@@ -115,7 +115,7 @@ namespace E_commerce.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("CartItems");
+                    b.ToTable("CartItems", (string)null);
                 });
 
             modelBuilder.Entity("E_commerce.Models.Category", b =>
@@ -132,7 +132,7 @@ namespace E_commerce.Migrations
 
                     b.HasKey("CategoryId");
 
-                    b.ToTable("Category");
+                    b.ToTable("Category", (string)null);
                 });
 
             modelBuilder.Entity("E_commerce.Models.OderItems", b =>
@@ -162,7 +162,7 @@ namespace E_commerce.Migrations
 
                     b.HasIndex("productId");
 
-                    b.ToTable("OrderItems");
+                    b.ToTable("OrderItems", (string)null);
                 });
 
             modelBuilder.Entity("E_commerce.Models.Order", b =>
@@ -200,7 +200,7 @@ namespace E_commerce.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("E_commerce.Models.Product", b =>
@@ -237,7 +237,7 @@ namespace E_commerce.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Product");
+                    b.ToTable("Product", (string)null);
                 });
 
             modelBuilder.Entity("E_commerce.Models.User", b =>
@@ -273,7 +273,7 @@ namespace E_commerce.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("users");
+                    b.ToTable("users", (string)null);
                 });
 
             modelBuilder.Entity("E_commerce.Models.WishList", b =>
@@ -296,7 +296,7 @@ namespace E_commerce.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("WishList");
+                    b.ToTable("WishList", (string)null);
                 });
 
             modelBuilder.Entity("E_commerce.Models.Address", b =>
@@ -370,7 +370,7 @@ namespace E_commerce.Migrations
                     b.HasOne("E_commerce.Models.User", "User")
                         .WithMany("Orders")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("User");
