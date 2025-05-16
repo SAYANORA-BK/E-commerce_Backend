@@ -1,4 +1,5 @@
-﻿using E_commerce.Models;
+﻿using E_commerce.Dto;
+using E_commerce.Models;
 
 namespace E_commerce.Dto
 {
@@ -8,7 +9,9 @@ namespace E_commerce.Dto
         public string? FirstName { get; set; }
         public string? Email { get; set; }
         public string? Role { get; set; }
-        public virtual List<Order>? Orders { get; set; }
-        public virtual Cart? Cart { get; set; }
+        public virtual List<OrderViewDto>? Orders { get; set; }
+        public List<AddressDto> Address { get; set; }
     }
 }
+
+

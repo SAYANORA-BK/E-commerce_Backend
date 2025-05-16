@@ -30,7 +30,7 @@ namespace E_commerce.Dto
         public string? PostOffice { get; set; }
 
         [Required(ErrorMessage = "Land mark is required")]
-        [StringLength(200, ErrorMessage = "Landmark must not exceed 200 characters")]
+        [StringLength(200, ErrorMessage = "Landmark must not exceed 100 characters")]
         public string landmark { get; set; }
     }
 }

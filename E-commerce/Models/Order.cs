@@ -21,6 +21,7 @@ namespace E_commerce.Models
 
 
         public virtual User? User { get; set; }
+        public virtual Address Address { get; set; }
         public virtual List<OderItems>? OrderItems { get; set; }
         public string Status { get; set; } = "Pending";
     }
