@@ -56,8 +56,7 @@ namespace E_commerce.Service
                 var check = isuser.Cart.cartitems.FirstOrDefault(p => p.ProductId == productId);
                 if (check != null)
                 {
-                    check.Quantity++;
-                    return new ApiResponse<CartItems>(200, "Quantity increased");
+                    return new ApiResponse<CartItems>(200, "already in cart");
                 }
                 else
                 {

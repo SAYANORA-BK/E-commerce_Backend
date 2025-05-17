@@ -53,7 +53,7 @@ namespace E_commerce.Service
             };
             await _context.Orders.AddAsync(neworder);
             _context.Carts.Remove(usercart);
-            await _context.SaveChangesAsync();
+             _context.SaveChanges();
             return true;
         }
         public async Task<ApiResponse<List<OrderViewDto>>> GetOrders(int userid)

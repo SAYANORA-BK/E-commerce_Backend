@@ -10,6 +10,6 @@
         public virtual Product? Product { get; set; }
 
         public virtual Order? Order { get; set; }
-        public string ProductName { get; internal set; }
+       
     }
 }

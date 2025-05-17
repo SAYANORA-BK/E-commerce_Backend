@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using CloudinaryDotNet.Actions;
+using E_commerce.Dto;
 using E_commerce.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,6 +23,8 @@ namespace E_commerce.Dbcontext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Order>().Ignore(o => o.Views);
+
             modelBuilder.Entity<User>()
                 .HasKey(x => x.Id);
 
@@ -37,11 +40,17 @@ namespace E_commerce.Dbcontext
             modelBuilder.Entity<Order>()
                 .Property(o => o.TotalAmount)
                 .HasPrecision(18, 2);
+
             modelBuilder.Entity<Order>()
                 .HasOne(x => x.User)
                 .WithMany(x => x.Orders)
                 .HasForeignKey(x => x.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
-        }
+        
+            modelBuilder.Entity<OrderViewDto>().HasNoKey();
+            base.OnModelCreating(modelBuilder);
+     
+
     }
+}
 }

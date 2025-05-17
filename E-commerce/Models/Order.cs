@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using E_commerce.Dto;
 
 namespace E_commerce.Models
 {
@@ -23,6 +24,7 @@ namespace E_commerce.Models
         public virtual User? User { get; set; }
         public virtual Address Address { get; set; }
         public virtual List<OderItems>? OrderItems { get; set; }
+        public virtual List<OrderViewDto>? Views { get; set; }
         public string Status { get; set; } = "Pending";
     }
 }

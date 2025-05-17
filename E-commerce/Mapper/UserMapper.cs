@@ -18,6 +18,7 @@ namespace E_commerce.Mapper
             CreateMap<Address,ShowAddressDto>().ReverseMap();
             CreateMap<Address, AddressDto>().ReverseMap();
             CreateMap<User, UserViewDto>().ReverseMap();
+            CreateMap<OderItems,UserOrderItemDto>().ReverseMap();
 
         }
     }
