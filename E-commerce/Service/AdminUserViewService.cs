@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using CloudinaryDotNet.Actions;
 using E_commerce.Dbcontext;
 using E_commerce.Dto;
 using E_commerce.Migrations;
@@ -73,28 +74,28 @@ namespace E_commerce.Service
         {
             var user = await _Context.users.SingleOrDefaultAsync(x => x.Id == id);
             
-            if (user == null)
+            if (user == null||user.Role!="Admin")
             {
                 return null;
             }
             var order = await _Context.Orders.Where(o => o.UserId == id)
             .Select(o => new OrderViewDto
-             {
-                 TransactionId = o.TransactionId,
-                 TotalAmount = o.TotalAmount,
+            {
+                TransactionId = o.TransactionId,
+                TotalAmount = o.TotalAmount,
                 DeliveryAdrress = o.Address.HouseName,
                 Phone = o.Address.PhoneNumber,
                 OrderDate = o.OrderDate,
-                 Items = o.OrderItems.Select(oi => new OrderItemDto
-                 {
+                Items = o.OrderItems.Select(oi => new OrderItemDto
+                {
                      Id = oi.Id,
                      ProductName = _Context.Product.Where(p=>p.ProductId==oi.productId).Select(p=>p.Title).FirstOrDefault(),
                      Quantity = oi.Quantity,
                      TotalPrice = oi.TotalPrice,
 
                   
-                 }).ToList()
-             }).ToListAsync();
+                }).ToList()
+            }).ToListAsync();
 
             var userDto = new UserViewDto
             {
@@ -110,7 +111,7 @@ namespace E_commerce.Service
         public async Task<bool> Blockandunblock(int userid)
         {
             var user = await _Context.users.SingleOrDefaultAsync(u => u.Id == userid);
-            if (user == null)
+            if (user == null||user.Role =="Admin")
             {
                 return false;
             }

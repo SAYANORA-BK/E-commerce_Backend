@@ -47,10 +47,6 @@ namespace E_commerce.Dbcontext
                 .HasForeignKey(x => x.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
         
-            modelBuilder.Entity<OrderViewDto>().HasNoKey();
-            base.OnModelCreating(modelBuilder);
-     
-
     }
 }
 }

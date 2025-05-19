@@ -25,7 +25,7 @@ namespace E_commerce.Controllers
 
             if (res.StatusCode == 400)
             {
-                return BadRequest("Bad Request,Address is nul or Already 3 Addresses of delivery Exist,Update it ");
+                return BadRequest(" Already 3 Addresses of delivery Exist,Update it ");
             }
             return Ok(res);
 
@@ -48,7 +48,7 @@ namespace E_commerce.Controllers
             {
                 return Ok("Deleted Successfully");
             }
-            return NotFound("there is no address");
+            return NotFound("there is no address in this address id");
         }
     }
 }

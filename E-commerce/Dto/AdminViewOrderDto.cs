@@ -9,7 +9,7 @@ namespace E_commerce.Dto
         public int OrderId { get; set; }
         public decimal? TotalAmount { get; set; }
         public DateTime OrderDate { get; set; }
-        public virtual List<Address> deliveryAddress { get; set; }
+       
        
 
     }
