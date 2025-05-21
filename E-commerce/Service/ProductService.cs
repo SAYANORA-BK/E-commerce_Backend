@@ -25,7 +25,9 @@ namespace E_commerce.Service
                 if (products.Count > 0)
                 {
                     var productall = products.Select(x => new ProductViewDto
+
                     {
+                        ProductId = x.ProductId,
                         Title = x.Title,
                         Description = x.Description,
                         Price = x.Price,
@@ -53,6 +55,7 @@ namespace E_commerce.Service
                 }
                 return new ProductViewDto()
                 {
+                   ProductId=products.ProductId,
                     Title = products.Title,
                     Description = products.Description,
                     Price = products.Price,
@@ -160,6 +163,7 @@ namespace E_commerce.Service
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
+
 
             }
         }

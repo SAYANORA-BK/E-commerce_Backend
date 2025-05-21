@@ -61,6 +61,15 @@ namespace E_commerce
         };
     });
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", policy =>
+                {
+                    policy.AllowAnyOrigin()
+                          .AllowAnyHeader()
+                          .AllowAnyMethod();
+                });
+            });
 
 
             builder.Services.AddSwaggerGen(options =>
@@ -100,7 +109,7 @@ namespace E_commerce
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
+            app.UseCors("AllowAll");
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
