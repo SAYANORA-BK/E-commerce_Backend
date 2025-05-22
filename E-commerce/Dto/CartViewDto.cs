@@ -8,5 +8,6 @@
         public string? Image { get; set; }
         public decimal? TotalAmount { get; set; }
         public int Quantity { get; set; }
+        public virtual List<CategoryViewDto>? category { get; set; }
     }
 }

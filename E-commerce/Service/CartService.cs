@@ -101,7 +101,8 @@ namespace E_commerce.Service
                     Price = x.Product.Price,
                     Quantity = x.Quantity,
                     TotalAmount = x.Quantity * x.Product.Price,
-                    Image = x.Product.Image
+                    Image = x.Product.Image,
+     
                 }).ToList();
 
                 return cartitem;

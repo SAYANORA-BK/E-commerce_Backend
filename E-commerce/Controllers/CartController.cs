@@ -45,6 +45,7 @@ namespace E_commerce.Controllers
         public async Task<IActionResult> GetCart()
         {
             int userid = Convert.ToInt32(HttpContext.Items["UserId"]);
+            Console.WriteLine(userid);
             var cartitems = await _service.GetCart(userid);
             if (cartitems.Count == 0)
             {

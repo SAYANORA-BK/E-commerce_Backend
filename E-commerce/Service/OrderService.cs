@@ -58,6 +58,7 @@ namespace E_commerce.Service
         }
         public async Task<ApiResponse<List<OrderViewDto>>> GetOrders(int userid)
         {
+            Console.WriteLine("fhdfd", userid);
 
             var userOrders = await _context.Orders
                             .Include(x => x.OrderItems)
@@ -86,6 +87,7 @@ namespace E_commerce.Service
                 OrderDate = order.OrderDate,
                 Items = order.OrderItems.Select(orderItem => new OrderItemDto
                 {
+                    Id= orderItem.Id,
                     ProductName = orderItem.Product.Title,
                     TotalPrice = orderItem.TotalPrice,
                     Quantity = orderItem.Quantity

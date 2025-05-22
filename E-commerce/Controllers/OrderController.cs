@@ -55,7 +55,11 @@ namespace E_commerce.Controllers
         {
             try
             {
-                var userId = Convert.ToInt32(HttpContext.Items["UserId"]);
+              
+                int userId = Convert.ToInt32(HttpContext.Items["UserId"]);
+                Console.WriteLine(userId);
+                Console.WriteLine(userId);
+
                 var result = await _service.GetOrders(userId);
                 return Ok(result);
             }
